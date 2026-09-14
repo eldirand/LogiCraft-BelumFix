@@ -1,0 +1,1386 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogiCraft | Hands-on Math Lab</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- =========================
+         HALAMAN PEMBUKA
+    ========================== -->
+
+    <main class="landing-page" id="landingPage">
+
+        <section class="hero-illustration">
+            <div class="cube">
+                <div class="cube-face cube-front"></div>
+                <div class="cube-face cube-right"></div>
+                <div class="cube-face cube-top"></div>
+            </div>
+
+            <div class="floating-shape shape-one"></div>
+            <div class="floating-shape shape-two"></div>
+            <div class="floating-shape shape-three"></div>
+        </section>
+
+        <section class="hero-content">
+
+            <div class="brand">
+                <span class="brand-icon">◆</span>
+                <span>LogiCraft</span>
+            </div>
+
+            <p class="tagline">Hands-on Math Lab</p>
+
+            <h1>
+                Belajar Matematika
+                <span>Jadi Lebih Bermakna</span>
+            </h1>
+
+            <p class="description">
+                Eksplorasi konsep aljabar dan geometri melalui
+                aktivitas interaktif, tantangan logika, dan
+                pengalaman belajar yang menyenangkan.
+            </p>
+
+            <div class="button-group">
+                <button class="btn btn-primary" id="loginBtn">
+                    Masuk
+                </button>
+
+                <button class="btn btn-secondary" id="registerBtn">
+                    Daftar
+                </button>
+            </div>
+
+            <p class="bottom-note">
+                ✦ Pikirlah. Eksplorasi. Pahami. Tumbuh.
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         MODAL LOGIN
+    ========================== -->
+
+    <div class="modal hidden" id="loginModal">
+
+        <div class="modal-content">
+
+            <button class="close-btn" id="closeLogin">&times;</button>
+
+            <div class="modal-icon">🔐</div>
+
+            <h2>Selamat Datang Kembali!</h2>
+
+            <p class="modal-description">
+                Masuk untuk melanjutkan eksplorasi matematika.
+            </p>
+
+            <form id="loginForm">
+
+                <label for="loginName">Nama Siswa</label>
+
+                <input
+                    type="text"
+                    id="loginName"
+                    placeholder="Masukkan nama kamu"
+                    required
+                >
+
+                <label for="loginClass">Kelas</label>
+
+                <select id="loginClass" required>
+                    <option value="">Pilih kelas</option>
+                    <option value="7">Kelas 7</option>
+                    <option value="8">Kelas 8</option>
+                    <option value="9">Kelas 9</option>
+                </select>
+
+                <button type="submit" class="btn btn-primary">
+                    Mulai Belajar →
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         MODAL DAFTAR
+    ========================== -->
+
+    <div class="modal hidden" id="registerModal">
+
+        <div class="modal-content">
+
+            <button class="close-btn" id="closeRegister">&times;</button>
+
+            <div class="modal-icon">🌟</div>
+
+            <h2>Buat Profil Belajar</h2>
+
+            <p class="modal-description">
+                Daftar untuk memulai perjalanan belajar bersama LogiCraft.
+            </p>
+
+            <form id="registerForm">
+
+                <label for="registerName">Nama Siswa</label>
+
+                <input
+                    type="text"
+                    id="registerName"
+                    placeholder="Masukkan nama kamu"
+                    required
+                >
+
+                <label for="registerClass">Kelas</label>
+
+                <select id="registerClass" required>
+                    <option value="">Pilih kelas</option>
+                    <option value="7">Kelas 7</option>
+                    <option value="8">Kelas 8</option>
+                    <option value="9">Kelas 9</option>
+                </select>
+
+                <button type="submit" class="btn btn-primary">
+                    Buat Profil →
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         DASHBOARD
+    ========================== -->
+
+    <main class="dashboard-page hidden" id="dashboardPage">
+
+        <!-- Header -->
+        <header class="dashboard-header">
+
+            <div class="dashboard-brand">
+                <span class="dashboard-brand-icon">◆</span>
+                <span>LogiCraft</span>
+            </div>
+
+            <div class="dashboard-header-right">
+
+                <button class="icon-btn" title="Notifikasi">
+                    🔔
+                </button>
+
+                <button class="profile-avatar" id="profileBtn">
+                    👩‍🎓
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <!-- Sapaan -->
+        <section class="welcome-section">
+
+            <div>
+                <p class="small-label">SELAMAT DATANG DI LOGICRAFT ✨</p>
+
+                <h2>
+                    Halo, <span id="studentName">Siswa</span>!
+                </h2>
+
+                <p>
+                    Siap eksplorasi logika hari ini?
+                </p>
+            </div>
+
+            <div class="welcome-decoration">
+                🧠
+            </div>
+
+        </section>
+
+
+        <!-- Progress -->
+        <section class="progress-card">
+
+            <div class="progress-card-top">
+
+                <div class="progress-icon">
+                    🏆
+                </div>
+
+                <div class="progress-info">
+                    <h3>Progress Belajar</h3>
+                    <p>Teruskan perjalananmu!</p>
+                </div>
+
+                <div class="progress-count">
+                    <strong id="progressText">0%</strong>
+                </div>
+
+            </div>
+
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+
+            <p class="progress-caption">
+                <span id="completedModules">0</span> dari 6 modul selesai
+            </p>
+
+        </section>
+
+
+        <!-- Materi -->
+        <section class="dashboard-section">
+
+            <div class="section-heading">
+                <div>
+                    <p class="small-label">PILIH PERJALANANMU</p>
+                    <h2>Mulai Eksplorasi</h2>
+                </div>
+
+                <span class="section-emoji">🚀</span>
+            </div>
+
+
+            <div class="subject-grid">
+
+                <!-- Aljabar -->
+                <article class="subject-card algebra-card">
+
+                    <div class="subject-card-top">
+                        <div class="subject-icon algebra-icon">
+                            𝑥
+                        </div>
+
+                        <span class="subject-badge">
+                            3 Modul
+                        </span>
+                    </div>
+
+                    <h3>Aljabar</h3>
+
+                    <p>
+                        Jelajahi persamaan linear, gradien,
+                        dan hubungan antarvariabel.
+                    </p>
+
+                    <div class="subject-progress-label">
+                        <span>Progress</span>
+                        <strong id="solidProgressText">0%</strong>
+                    </div>
+
+                    <div class="mini-progress">
+                        <div id="solidProgressFill"></div>
+                    </div>
+
+                    <small id="solidProgressStatus" class="solid-progress-status">
+                        Belum dikerjakan
+                    </small>
+
+                    <button
+                        class="subject-btn"
+                        id="algebraBtn"
+                    >
+                        Mulai Modul <span>→</span>
+                    </button>
+
+                </article>
+
+
+                <!-- Geometri -->
+                <article class="subject-card geometry-card">
+
+                    <div class="subject-card-top">
+                        <div class="subject-icon geometry-icon">
+                            △
+                        </div>
+
+                        <span class="subject-badge">
+                            3 Modul
+                        </span>
+                    </div>
+
+                    <h3>Geometri</h3>
+
+                    <p>
+                        Manipulasi bangun ruang, jaring-jaring,
+                        simetri, dan volume.
+                    </p>
+
+                    <div class="subject-progress">
+                        <div class="subject-progress-label">
+                            <span>Progress</span>
+                            <strong>0%</strong>
+                        </div>
+
+                        <div class="mini-progress">
+                            <div></div>
+                        </div>
+                    </div>
+
+                    <button
+                        class="subject-btn"
+                        id="geometryBtn"
+                    >
+                        Mulai Modul <span>→</span>
+                    </button>
+
+                </article>
+                <!-- Bangun Ruang -->
+<article class="subject-card solid-geometry-card">
+
+    <div class="subject-card-top">
+        <div class="subject-icon solid-geometry-icon">
+            🧊
+        </div>
+
+        <span class="subject-badge">
+            6 Bangun
+        </span>
+    </div>
+
+    <h3>Bangun Ruang</h3>
+
+    <p>
+        Pelajari kubus, balok, tabung, kerucut, bola,
+        dan prisma melalui rumus serta perhitungan interaktif.
+    </p>
+
+    <div class="subject-progress">
+        <div class="subject-progress-label">
+            <span>Progress</span>
+            <strong>0%</strong>
+        </div>
+
+        <div class="mini-progress">
+            <div></div>
+        </div>
+    </div>
+
+    <button
+        class="subject-btn"
+        id="solidGeometryBtn"
+    >
+        Mulai Modul <span>→</span>
+    </button>
+
+</article>
+
+            </div>
+
+        </section>
+
+
+        <!-- Menu Tambahan -->
+        <section class="dashboard-section">
+
+            <div class="section-heading">
+                <div>
+                    <p class="small-label">LIHAT PERKEMBANGANMU</p>
+                    <h2>Ruang Belajar</h2>
+                </div>
+            </div>
+
+            <div class="quick-menu">
+
+                <button class="quick-card" id="achievementBtn">
+
+                    <div class="quick-icon achievement-icon">
+                        🏅
+                    </div>
+
+                    <div>
+                        <h3>Pencapaian</h3>
+                        <p>Lihat lencana belajarmu</p>
+                    </div>
+
+                    <span class="quick-arrow">→</span>
+
+                </button>
+
+
+                <button class="quick-card" id="rankingBtn">
+
+                    <div class="quick-icon ranking-icon">
+                        🏆
+                    </div>
+
+                    <div>
+                        <h3>Peringkat</h3>
+                        <p>Bandingkan progresmu</p>
+                    </div>
+
+                    <span class="quick-arrow">→</span>
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- Footer Dashboard -->
+        <footer class="dashboard-footer">
+            <p>LogiCraft · Hands-on Math Lab</p>
+            <p>Pikirlah. Eksplorasi. Pahami. Tumbuh.</p>
+        </footer>
+
+    </main>
+
+<!-- =========================
+     MODUL ALJABAR
+========================= -->
+
+<main class="module-page hidden" id="algebraModule">
+
+    <!-- Header Modul -->
+    <header class="module-header">
+
+        <button class="back-btn" id="backToDashboard">
+            ← <span>Kembali</span>
+        </button>
+
+        <div class="module-header-title">
+            <span>Aljabar</span>
+            <span class="module-counter">1 / 3</span>
+        </div>
+
+        <div class="module-menu">
+            ☰
+        </div>
+
+    </header>
+
+
+    <!-- Progress Modul -->
+    <div class="module-progress-wrapper">
+
+        <div class="module-progress-bar">
+            <div class="module-progress-fill"></div>
+        </div>
+
+        <p>Modul 1 dari 3</p>
+
+    </div>
+
+
+    <!-- Kartu Interaksi -->
+    <section class="interaction-card">
+
+        <div class="interaction-card-header">
+
+            <span class="card-category">
+                ✦ EKSPLORASI ALJABAR
+            </span>
+
+            <h1>
+                Kenali Kekuatan
+                <span>Gradien</span>
+            </h1>
+
+            <p>
+                Geser slider untuk melihat bagaimana perubahan
+                nilai gradien memengaruhi kemiringan garis.
+            </p>
+
+        </div>
+
+
+        <!-- Grafik -->
+        <div class="graph-container">
+
+            <svg
+                id="linearGraph"
+                viewBox="0 0 500 340"
+                role="img"
+                aria-label="Grafik persamaan linear"
+            >
+                <!-- Isi grafik dibuat oleh JavaScript -->
+            </svg>
+
+        </div>
+
+
+        <!-- Informasi Persamaan -->
+        <div class="equation-display">
+
+            <div class="equation-label">
+                Persamaan garis saat ini
+            </div>
+
+            <div class="equation-value" id="equationValue">
+                y = 1x + 0
+            </div>
+
+        </div>
+
+
+        <!-- Slider -->
+        <div class="slider-section">
+
+            <div class="slider-heading">
+
+                <div>
+                    <span class="slider-label">
+                        Nilai Gradien (m)
+                    </span>
+
+                    <p>
+                        Atur kemiringan garis
+                    </p>
+                </div>
+
+                <strong id="slopeValue">1</strong>
+
+            </div>
+
+            <input
+                type="range"
+                id="slopeSlider"
+                min="-2"
+                max="2"
+                step="0.5"
+                value="1"
+            >
+
+            <div class="slider-scale">
+                <span>-2</span>
+                <span>-1</span>
+                <span>0</span>
+                <span>1</span>
+                <span>2</span>
+            </div>
+
+        </div>
+
+
+        <!-- Feedback Visual -->
+        <div class="visual-feedback" id="visualFeedback">
+
+            <div class="feedback-icon">
+                💡
+            </div>
+
+            <div>
+                <strong>Amati perubahan garis!</strong>
+
+                <p>
+                    Gradien menunjukkan seberapa curam
+                    suatu garis terhadap sumbu-x.
+                </p>
+            </div>
+
+        </div>
+
+
+        <!-- Navigasi -->
+        <div class="module-navigation">
+
+            <button
+                class="btn btn-secondary module-back-btn"
+                id="moduleBackBtn"
+            >
+                ← Sebelumnya
+            </button>
+
+            <button
+                class="btn btn-primary"
+                id="nextModuleBtn"
+            >
+                Lanjut →
+            </button>
+
+        </div>
+
+    </section>
+
+</main>
+
+<!-- =========================
+     MODUL GEOMETRI
+========================= -->
+
+<main class="module-page hidden" id="geometryModule">
+
+    <!-- Header Modul -->
+    <header class="module-header">
+
+        <button class="back-btn" id="backFromGeometry">
+            ← <span>Kembali</span>
+        </button>
+
+        <div class="module-header-title">
+            <span>Geometri</span>
+            <span class="module-counter">1 / 3</span>
+        </div>
+
+        <div class="module-menu">
+            ☰
+        </div>
+
+    </header>
+
+
+    <!-- Progress Modul -->
+    <div class="module-progress-wrapper">
+
+        <div class="module-progress-bar">
+            <div class="module-progress-fill geometry-progress-fill"></div>
+        </div>
+
+        <p>Modul 1 dari 3</p>
+
+    </div>
+
+
+    <!-- Kartu Materi -->
+    <section class="interaction-card geometry-interaction-card">
+
+        <div class="interaction-card-header">
+
+            <span class="card-category">
+                ✦ EKSPLORASI GEOMETRI
+            </span>
+
+            <h1>
+                Kenali Bentuk dan
+                <span>Ukuran Bangun</span>
+            </h1>
+
+            <p>
+                Ubah panjang dan lebar persegi panjang untuk melihat
+                perubahan luas dan kelilingnya.
+            </p>
+
+        </div>
+
+
+        <!-- Area Bangun -->
+        <div class="geometry-visual-container">
+
+            <div class="rectangle-visual-area">
+                <div class="rectangle-shape" id="rectangleShape">
+                    <span class="rectangle-label">Persegi Panjang</span>
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- Informasi Ukuran -->
+        <div class="geometry-result-grid">
+
+            <div class="geometry-result-card">
+                <span class="geometry-result-label">Panjang</span>
+                <strong id="lengthValue">8 cm</strong>
+            </div>
+
+            <div class="geometry-result-card">
+                <span class="geometry-result-label">Lebar</span>
+                <strong id="widthValue">4 cm</strong>
+            </div>
+
+            <div class="geometry-result-card">
+                <span class="geometry-result-label">Luas</span>
+                <strong id="areaValue">32 cm²</strong>
+            </div>
+
+            <div class="geometry-result-card">
+                <span class="geometry-result-label">Keliling</span>
+                <strong id="perimeterValue">24 cm</strong>
+            </div>
+
+        </div>
+
+
+        <!-- Kontrol Panjang -->
+        <div class="geometry-slider-section">
+
+            <div class="geometry-slider-heading">
+                <div>
+                    <span class="slider-label">Panjang Persegi Panjang</span>
+                    <p>Geser untuk mengubah panjang</p>
+                </div>
+
+                <strong id="lengthSliderValue">8 cm</strong>
+            </div>
+
+            <input
+                type="range"
+                id="lengthSlider"
+                min="3"
+                max="15"
+                step="1"
+                value="8"
+            >
+
+        </div>
+
+
+        <!-- Kontrol Lebar -->
+        <div class="geometry-slider-section">
+
+            <div class="geometry-slider-heading">
+                <div>
+                    <span class="slider-label">Lebar Persegi Panjang</span>
+                    <p>Geser untuk mengubah lebar</p>
+                </div>
+
+                <strong id="widthSliderValue">4 cm</strong>
+            </div>
+
+            <input
+                type="range"
+                id="widthSlider"
+                min="2"
+                max="10"
+                step="1"
+                value="4"
+            >
+
+        </div>
+
+
+        <!-- Rumus -->
+        <div class="geometry-formula-card">
+
+            <div class="formula-icon">📐</div>
+
+            <div>
+                <strong>Rumus yang digunakan</strong>
+                <p>
+                    Luas = panjang × lebar
+                </p>
+                <p>
+                    Keliling = 2 × (panjang + lebar)
+                </p>
+            </div>
+
+        </div>
+
+
+        <!-- Feedback -->
+        <div class="visual-feedback geometry-feedback" id="geometryFeedback">
+
+            <div class="feedback-icon">
+                💡
+            </div>
+
+            <div>
+                <strong>Amati perubahan ukuran bangun!</strong>
+
+                <p>
+                    Semakin besar panjang atau lebar, semakin besar
+                    pula luas dan keliling persegi panjang.
+                </p>
+            </div>
+
+        </div>
+
+
+        <!-- Navigasi -->
+        <div class="module-navigation">
+
+            <button
+                class="btn btn-secondary module-back-btn"
+                id="geometryPreviousBtn"
+            >
+                ← Sebelumnya
+            </button>
+
+            <button
+                class="btn btn-primary"
+                id="geometryNextBtn"
+            >
+                Lanjut →
+            </button>
+
+        </div>
+
+    </section>
+
+</main>
+
+    <!-- =========================
+         MODAL INFORMASI
+    ========================== -->
+
+    <div class="modal hidden" id="infoModal">
+
+        <div class="modal-content info-modal-content">
+
+            <button class="close-btn" id="closeInfo">&times;</button>
+
+            <div class="modal-icon">✨</div>
+
+            <h2 id="infoTitle">Segera Hadir!</h2>
+
+            <p class="modal-description" id="infoDescription">
+                Fitur ini sedang dipersiapkan.
+            </p>
+
+            <button class="btn btn-primary" id="infoOkBtn">
+                Oke, Mengerti
+            </button>
+
+        </div>
+
+    </div>
+
+<!-- ================= MODUL BANGUN RUANG ================= -->
+<section id="solidGeometryModule" class="learning-module hidden">
+
+  <div class="module-header">
+    <button id="backFromSolidGeometry" class="back-btn">
+      ← Kembali
+    </button>
+
+    <div>
+      <span class="module-label">MODUL MATEMATIKA</span>
+      <h2>Bangun Ruang</h2>
+      <p>
+        Pelajari jenis-jenis bangun ruang beserta rumus volume
+        dan luas permukaannya.
+      </p>
+    </div>
+  </div>
+
+  <div class="solid-intro">
+    <div class="solid-intro-icon">🧊</div>
+    <div>
+      <h3>Apa Itu Bangun Ruang?</h3>
+      <p>
+        Bangun ruang adalah bangun tiga dimensi yang memiliki panjang,
+        lebar, dan tinggi. Bangun ruang memiliki volume serta luas permukaan.
+      </p>
+    </div>
+  </div>
+
+  <div class="solid-grid">
+
+    <!-- KUBUS -->
+    <article class="solid-card">
+      <div class="solid-card-icon">⬛</div>
+      <h3>Kubus</h3>
+      <p class="solid-description">
+        Bangun ruang yang memiliki 6 sisi berbentuk persegi dengan
+        panjang rusuk yang sama.
+      </p>
+
+      <div class="formula-box">
+        <p><strong>Volume</strong></p>
+        <p>V = s × s × s</p>
+        <p>V = s³</p>
+
+        <p><strong>Luas Permukaan</strong></p>
+        <p>L = 6 × s²</p>
+      </div>
+
+      <label for="cubeSide">Panjang rusuk</label>
+      <input
+        type="number"
+        id="cubeSide"
+        class="solid-input"
+        placeholder="Masukkan rusuk"
+        min="0"
+      />
+
+      <button class="calculate-btn" id="calculateCube">
+        Hitung
+      </button>
+
+      <div id="cubeResult" class="calculation-result">
+        Masukkan panjang rusuk untuk menghitung.
+      </div>
+    </article>
+
+    <!-- BALOK -->
+    <article class="solid-card">
+      <div class="solid-card-icon">📦</div>
+      <h3>Balok</h3>
+      <p class="solid-description">
+        Bangun ruang yang memiliki 6 sisi berbentuk persegi panjang.
+      </p>
+
+      <div class="formula-box">
+        <p><strong>Volume</strong></p>
+        <p>V = p × l × t</p>
+
+        <p><strong>Luas Permukaan</strong></p>
+        <p>L = 2 × (pl + pt + lt)</p>
+      </div>
+
+      <label for="blockLength">Panjang</label>
+      <input
+        type="number"
+        id="blockLength"
+        class="solid-input"
+        placeholder="Panjang"
+        min="0"
+      />
+
+      <label for="blockWidth">Lebar</label>
+      <input
+        type="number"
+        id="blockWidth"
+        class="solid-input"
+        placeholder="Lebar"
+        min="0"
+      />
+
+      <label for="blockHeight">Tinggi</label>
+      <input
+        type="number"
+        id="blockHeight"
+        class="solid-input"
+        placeholder="Tinggi"
+        min="0"
+      />
+
+      <button class="calculate-btn" id="calculateBlock">
+        Hitung
+      </button>
+
+      <div id="blockResult" class="calculation-result">
+        Masukkan ukuran balok untuk menghitung.
+      </div>
+    </article>
+
+    <!-- TABUNG -->
+    <article class="solid-card">
+      <div class="solid-card-icon">🥫</div>
+      <h3>Tabung</h3>
+      <p class="solid-description">
+        Bangun ruang yang memiliki dua sisi berbentuk lingkaran
+        dan satu sisi lengkung.
+      </p>
+
+      <div class="formula-box">
+        <p><strong>Volume</strong></p>
+        <p>V = π × r² × t</p>
+
+        <p><strong>Luas Permukaan</strong></p>
+        <p>L = 2 × π × r × (r + t)</p>
+      </div>
+
+      <label for="cylinderRadius">Jari-jari</label>
+      <input
+        type="number"
+        id="cylinderRadius"
+        class="solid-input"
+        placeholder="Jari-jari"
+        min="0"
+      />
+
+      <label for="cylinderHeight">Tinggi</label>
+      <input
+        type="number"
+        id="cylinderHeight"
+        class="solid-input"
+        placeholder="Tinggi"
+        min="0"
+      />
+
+      <button class="calculate-btn" id="calculateCylinder">
+        Hitung
+      </button>
+
+      <div id="cylinderResult" class="calculation-result">
+        Masukkan ukuran tabung untuk menghitung.
+      </div>
+    </article>
+
+    <!-- KERUCUT -->
+    <article class="solid-card">
+      <div class="solid-card-icon">🔺</div>
+      <h3>Kerucut</h3>
+      <p class="solid-description">
+        Bangun ruang yang memiliki alas berbentuk lingkaran
+        dan satu titik puncak.
+      </p>
+
+      <div class="formula-box">
+        <p><strong>Volume</strong></p>
+        <p>V = ⅓ × π × r² × t</p>
+
+        <p><strong>Luas Permukaan</strong></p>
+        <p>L = π × r × (r + s)</p>
+      </div>
+
+      <label for="coneRadius">Jari-jari</label>
+      <input
+        type="number"
+        id="coneRadius"
+        class="solid-input"
+        placeholder="Jari-jari"
+        min="0"
+      />
+
+      <label for="coneHeight">Tinggi</label>
+      <input
+        type="number"
+        id="coneHeight"
+        class="solid-input"
+        placeholder="Tinggi"
+        min="0"
+      />
+
+      <label for="coneSlant">Garis pelukis</label>
+      <input
+        type="number"
+        id="coneSlant"
+        class="solid-input"
+        placeholder="Garis pelukis"
+        min="0"
+      />
+
+      <button class="calculate-btn" id="calculateCone">
+        Hitung
+      </button>
+
+      <div id="coneResult" class="calculation-result">
+        Masukkan ukuran kerucut untuk menghitung.
+      </div>
+    </article>
+
+    <!-- BOLA -->
+    <article class="solid-card">
+      <div class="solid-card-icon">⚽</div>
+      <h3>Bola</h3>
+      <p class="solid-description">
+        Bangun ruang yang seluruh permukaannya melengkung
+        dan memiliki satu titik pusat.
+      </p>
+
+      <div class="formula-box">
+        <p><strong>Volume</strong></p>
+        <p>V = ⁴⁄₃ × π × r³</p>
+
+        <p><strong>Luas Permukaan</strong></p>
+        <p>L = 4 × π × r²</p>
+      </div>
+
+      <label for="sphereRadius">Jari-jari</label>
+      <input
+        type="number"
+        id="sphereRadius"
+        class="solid-input"
+        placeholder="Jari-jari"
+        min="0"
+      />
+
+      <button class="calculate-btn" id="calculateSphere">
+        Hitung
+      </button>
+
+      <div id="sphereResult" class="calculation-result">
+        Masukkan jari-jari bola untuk menghitung.
+      </div>
+    </article>
+
+    <!-- PRISMA -->
+    <article class="solid-card">
+      <div class="solid-card-icon">🔷</div>
+      <h3>Prisma</h3>
+      <p class="solid-description">
+        Bangun ruang yang memiliki dua sisi sejajar dan kongruen
+        serta sisi tegak berbentuk persegi panjang.
+      </p>
+
+      <div class="formula-box">
+        <p><strong>Volume</strong></p>
+        <p>V = luas alas × tinggi prisma</p>
+
+        <p><strong>Luas Permukaan</strong></p>
+        <p>L = 2 × luas alas + luas selimut</p>
+      </div>
+
+      <label for="prismBaseArea">Luas alas</label>
+      <input
+        type="number"
+        id="prismBaseArea"
+        class="solid-input"
+        placeholder="Luas alas"
+        min="0"
+      />
+
+      <label for="prismHeight">Tinggi prisma</label>
+      <input
+        type="number"
+        id="prismHeight"
+        class="solid-input"
+        placeholder="Tinggi prisma"
+        min="0"
+      />
+
+      <label for="prismBasePerimeter">Keliling alas</label>
+      <input
+        type="number"
+        id="prismBasePerimeter"
+        class="solid-input"
+        placeholder="Keliling alas"
+        min="0"
+      />
+
+      <button class="calculate-btn" id="calculatePrism">
+        Hitung
+      </button>
+
+      <div id="prismResult" class="calculation-result">
+        Masukkan data prisma untuk menghitung.
+      </div>
+    </article>
+
+  </div>
+
+  <div class="solid-note">
+    <strong>Catatan:</strong>
+    Gunakan satuan yang sama untuk setiap ukuran. Jika ukuran menggunakan
+    cm, maka volume menggunakan cm³ dan luas permukaan menggunakan cm².
+  </div>
+  
+<!-- Tombol menuju kuis -->
+<div class="solid-quiz-action">
+    <button class="btn btn-primary" id="openSolidQuiz">
+        🧠 Mulai Kuis
+    </button>
+</div>  
+</section>
+
+<!-- KUIS BANGUN RUANG -->
+<section id="solidQuizPage" class="page-section hidden">
+    <div class="page-header">
+        <button class="back-btn" id="backFromSolidQuiz">
+            ← Kembali
+        </button>
+
+        <div>
+            <span class="section-label">LATIHAN</span>
+            <h1>Kuis Bangun Ruang</h1>
+            <p>Uji pemahamanmu tentang kubus, balok, prisma, limas, tabung, kerucut, dan bola.</p>
+        </div>
+    </div>
+
+    <div class="quiz-container">
+
+        <div class="quiz-intro">
+            <div class="quiz-icon">🧠</div>
+            <div>
+                <h2>Siap menguji kemampuanmu?</h2>
+                <p>
+                    Jawablah setiap pertanyaan dengan memilih satu jawaban yang paling tepat.
+                    Setelah selesai, klik tombol periksa jawaban.
+                </p>
+            </div>
+        </div>
+
+        <form id="solidQuizForm">
+
+            <!-- SOAL 1 -->
+            <div class="quiz-question">
+                <div class="question-number">Soal 1</div>
+                <h3>
+                    Sebuah kubus memiliki panjang rusuk 6 cm.
+                    Berapakah volume kubus tersebut?
+                </h3>
+
+                <div class="quiz-options">
+                    <label>
+                        <input type="radio" name="solidQ1" value="A">
+                        <span>A. 36 cm³</span>
+                    </label>
+
+                    <label>
+                        <input type="radio" name="solidQ1" value="B">
+                        <span>B. 72 cm³</span>
+                    </label>
+
+                    <label>
+                        <input type="radio" name="solidQ1" value="C">
+                        <span>C. 216 cm³</span>
+                    </label>
+
+                    <label>
+                        <input type="radio" name="solidQ1" value="D">
+                        <span>D. 256 cm³</span>
+                    </label>
+                </div>
+
+                <div class="quiz-explanation" id="solidExplanation1"></div>
+            </div>
+
+            <!-- SOAL 2 -->
+            <div class="quiz-question">
+                <div class="question-number">Soal 2</div>
+                <h3>
+                    Balok memiliki panjang 10 cm, lebar 5 cm,
+                    dan tinggi 4 cm. Volume balok tersebut adalah ...
+                </h3>
+
+                <div class="quiz-options">
+                    <label>
+                        <input type="radio" name="solidQ2" value="A">
+                        <span>A. 100 cm³</span>
+                    </label>
+
+                    <label>
+                        <input type="radio" name="solidQ2" value="B">
+                        <span>B. 150 cm³</span>
+                    </label>
+
+                    <label>
+                        <input type="radio" name="solidQ2" value="C">
+                        <span>C. 200 cm³</span>
+                    </label>
+
+                    <label>
+                        <input type="radio" name="solidQ2" value="D">
+                        <span>D. 250 cm³</span>
+                    </label>
+                </div>
+
+                <div class="quiz-explanation" id="solidExplanation2"></div>
+            </div>
+
+            <!-- SOAL 3 -->
+            <div class="quiz-question">
+                <div class="question-number">Soal 3</div>
+                <h3>
+                    Rumus volume tabung adalah ...
+                </h3>
+
+                <div class="quiz-options">
+                    <label>
+                        <input type="radio" name="solidQ3" value="A">
+                        <span>A. π × r × t</span>
+                    </label>
+
+                    <label>
+                        <input type="radio" name="solidQ3" value="B">
+                        <span>B. π × r² × t</span>
+                    </label>
+
+                    <label>
+                        <input type="radio" name="solidQ3" value="C">
+                        <span>C. 2 × π × r × t</span>
+                    </label>
+
+                    <label>
+                        <input type="radio" name="solidQ3" value="D">
+                        <span>D. ½ × π × r² × t</span>
+                    </label>
+                </div>
+
+                <div class="quiz-explanation" id="solidExplanation3"></div>
+            </div>
+
+            <!-- SOAL 4 -->
+            <div class="quiz-question">
+                <div class="question-number">Soal 4</div>
+                <h3>
+                    Sebuah bola memiliki jari-jari 3 cm.
+                    Jika π = 3,14, berapakah luas permukaan bola?
+                </h3>
+
+                <div class="quiz-options">
+                    <label>
+                        <input type="radio" name="solidQ4" value="A">
+                        <span>A. 28,26 cm²</span>
+                    </label>
+
+                    <label>
+                        <input type="radio" name="solidQ4" value="B">
+                        <span>B. 56,52 cm²</span>
+                    </label>
+
+                    <label>
+                        <input type="radio" name="solidQ4" value="C">
+                        <span>C. 113,04 cm²</span>
+                    </label>
+
+                    <label>
+                        <input type="radio" name="solidQ4" value="D">
+                        <span>D. 226,08 cm²</span>
+                    </label>
+                </div>
+
+                <div class="quiz-explanation" id="solidExplanation4"></div>
+            </div>
+
+            <!-- SOAL 5 -->
+            <div class="quiz-question">
+                <div class="question-number">Soal 5</div>
+                <h3>
+                    Limas memiliki luas alas 24 cm² dan tinggi 10 cm.
+                    Volume limas tersebut adalah ...
+                </h3>
+
+                <div class="quiz-options">
+                    <label>
+                        <input type="radio" name="solidQ5" value="A">
+                        <span>A. 80 cm³</span>
+                    </label>
+
+                    <label>
+                        <input type="radio" name="solidQ5" value="B">
+                        <span>B. 120 cm³</span>
+                    </label>
+
+                    <label>
+                        <input type="radio" name="solidQ5" value="C">
+                        <span>C. 240 cm³</span>
+                    </label>
+
+                    <label>
+                        <input type="radio" name="solidQ5" value="D">
+                        <span>D. 360 cm³</span>
+                    </label>
+                </div>
+
+                <div class="quiz-explanation" id="solidExplanation5"></div>
+            </div>
+
+            <button type="button" class="primary-btn" id="checkSolidQuiz">
+                Periksa Jawaban
+            </button>
+
+            <button type="button" class="secondary-btn" id="resetSolidQuiz">
+                Ulangi Kuis
+            </button>
+        </form>
+
+        <div class="quiz-result" id="solidQuizResult">
+            <div class="result-icon">🏆</div>
+            <h2 id="solidQuizScore">Nilai: 0/100</h2>
+            <p id="solidQuizMessage"></p>
+            <p class="saved-score-note">
+                Nilai terakhir akan tersimpan otomatis.
+            </p>
+        </div>
+
+    </div>
+<!-- =============== AKHIR MODUL BANGUN RUANG =============== -->    
+
+    
+
+</section>
+<script src="script.js"></script>
+</body>
+</html>
